@@ -1,0 +1,39 @@
+jobs:
+  - id: military_weekday_briefing
+    name: 东南军情工作日快评
+    enabled: true
+    schedule:
+      type: weekly
+      weekdays: [Mon, Tue, Wed, Thu, Fri]
+      time: "19:30"
+      timezone: "Asia/Shanghai"
+    task:
+      text: 做一期南海局势节目
+      auto_approve: true
+      source: scheduler
+
+  - id: crypto_weekly_report
+    name: 比特币周报
+    enabled: true
+    schedule:
+      type: weekly
+      weekdays: [Sun]
+      time: "20:00"
+      timezone: "Asia/Shanghai"
+    task:
+      text: 做一期比特币周报
+      auto_approve: true
+      source: scheduler
+
+  - id: rwa_weekly_deep_research
+    name: RWA 周度深度研究
+    enabled: true
+    schedule:
+      type: weekly
+      weekdays: [Sat]
+      time: "09:00"
+      timezone: "Asia/Shanghai"
+    task:
+      text: 做本周 RWA 深度研究
+      auto_approve: true
+      source: scheduler

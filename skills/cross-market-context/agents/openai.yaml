@@ -1,0 +1,5 @@
+interface:
+  display_name: "Cross-Market Context"
+  short_description: "Frame BTC, gold, and NQ around the RWA mainline"
+  brand_color: "#1D4ED8"
+  default_prompt: "Use $cross-market-context to write macro_context.md for this week's RWA workflow."

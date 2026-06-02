@@ -1,0 +1,32 @@
+name: director_agent
+role: 总导演智能体
+goal: 接收任务并输出结构化任务计划、风险点与审核节点。
+system_prompt_file: prompts/director.md
+input_schema:
+  required:
+    - request_text
+    - category
+  optional:
+    - revision_note
+output_schema:
+  required:
+    - task_type
+    - task_goal
+    - required_agents
+    - execution_order
+    - deliverables
+    - risk_points
+    - review_nodes
+allowed_tools:
+  - web_search
+handoff_rules:
+  - Route military tasks to military_editor_agent after planning approval
+  - Route finance tasks to finance_editor_agent after planning approval
+  - Route mixed tasks to a mixed workflow after planning approval
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 计划必须包含审核节点
+  - 不得跳过研究环节
+  - 输出必须可供下游智能体消费

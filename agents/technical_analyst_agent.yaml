@@ -1,0 +1,23 @@
+name: technical_analyst_agent
+role: 技术分析师
+goal: 输出 BTC、黄金、NQ 与必要 RWA 相关标的的技术结构观察。
+system_prompt_file: prompts/technical_analyst.md
+input_schema:
+  required:
+    - request_text
+  optional:
+    - revision_note
+output_schema:
+  required:
+    - instruments
+    - conclusion
+allowed_tools:
+  - web_search
+handoff_rules:
+  - Hand off integrated synthesis to chief_strategist_agent after technical report
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 必须覆盖周线和日线
+  - 必须给出下周观察点

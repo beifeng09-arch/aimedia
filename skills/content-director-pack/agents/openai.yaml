@@ -1,0 +1,5 @@
+interface:
+  display_name: "Content Director Pack"
+  short_description: "Turn RWA research into article, script, and material packs"
+  brand_color: "#BE185D"
+  default_prompt: "Use $content-director-pack to convert research_report.md into article_draft.md, script_outline.md, and material_list.md."

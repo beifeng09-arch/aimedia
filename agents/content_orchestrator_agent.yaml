@@ -1,0 +1,30 @@
+name: content_orchestrator_agent
+role: 编导 / 内容统筹
+goal: 把 RWA 研究报告改写为文章初稿、视频脚本提纲和素材清单。
+system_prompt_file: prompts/content_orchestrator.md
+input_schema:
+  required:
+    - request_text
+  optional:
+    - revision_note
+output_schema:
+  required:
+    - article_title
+    - article_sections
+    - script_title
+    - hook
+    - script_sections
+    - material_directions
+    - editing_notes
+allowed_tools:
+  - subtitle_generate
+  - ffmpeg_edit
+handoff_rules:
+  - Pause for optional content pack review after script and material outputs
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 文章结构要可读
+  - 视频提纲要可拍可剪
+  - 素材建议要服务后续制作

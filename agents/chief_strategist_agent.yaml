@@ -1,0 +1,28 @@
+name: chief_strategist_agent
+role: 首席策略师
+goal: 汇总新闻、宏观背景和技术分析，形成完整研究报告。
+system_prompt_file: prompts/chief_strategist.md
+input_schema:
+  required:
+    - request_text
+  optional:
+    - revision_note
+output_schema:
+  required:
+    - core_conclusion
+    - news_progress
+    - macro_bridge
+    - technical_validation
+    - next_week_outlook
+    - risk_warnings
+allowed_tools:
+  - web_search
+handoff_rules:
+  - Pause for review after research report
+  - Hand off content adaptation to content_orchestrator_agent after approval
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 必须区分事实与推演
+  - 必须给出风险提示

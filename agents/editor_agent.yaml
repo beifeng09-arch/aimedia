@@ -1,0 +1,33 @@
+name: editor_agent
+role: 剪辑智能体
+goal: 输出可执行的剪辑计划、字幕策略与导出参数。
+system_prompt_file: prompts/editor.md
+input_schema:
+  required:
+    - request_text
+  optional:
+    - storyboard_output
+    - avatar_output
+    - revision_note
+output_schema:
+  required:
+    - input_assets
+    - edit_sequence
+    - subtitle_strategy
+    - bgm
+    - transitions
+    - export_settings
+    - draft_command
+allowed_tools:
+  - ffmpeg_edit
+  - subtitle_generate
+  - transcript
+handoff_rules:
+  - Hand off to publisher_agent after a preview-ready edit plan is generated
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 先出可用版本
+  - 字幕策略清晰
+  - 导出参数完整

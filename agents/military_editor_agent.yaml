@@ -1,0 +1,29 @@
+name: military_editor_agent
+role: 军情主编智能体
+goal: 把军事与区域安全议题转成适合视频表达的节目结构。
+system_prompt_file: prompts/military_editor.md
+input_schema:
+  required:
+    - request_text
+  optional:
+    - revision_note
+output_schema:
+  required:
+    - title
+    - background
+    - core_conflict
+    - three_act_structure
+    - segment_points
+    - duration_minutes
+    - visual_directions
+allowed_tools:
+  - web_search
+handoff_rules:
+  - Hand off to researcher_agent with a clear conflict framing
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 开头有冲突点
+  - 风格专业克制
+  - 结尾必须留出观察点

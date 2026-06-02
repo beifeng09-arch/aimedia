@@ -1,0 +1,207 @@
+workflows:
+  military:
+    workflow_name: southeast_military_pipeline
+    template: southeast_military
+    review_points:
+      - plan
+      - content_pack
+    steps:
+      - id: plan
+        module: planning
+        agent: director_agent
+        action: Create the execution plan and review checklist
+        produces:
+          - execution_plan.yaml
+          - review_plan.md
+        review_stage: plan
+      - id: editorial
+        module: editorial
+        agent: military_editor_agent
+        action: Generate editorial framing for the episode
+        produces:
+          - script_outline.md
+      - id: research
+        module: research
+        agent: researcher_agent
+        action: Produce a structured research brief with verification needs
+        produces:
+          - research_brief.md
+      - id: scripting
+        module: scripting
+        agent: scriptwriter_agent
+        action: Turn the brief into a spoken-video outline
+        produces:
+          - script_outline.md
+      - id: storyboard
+        module: storyboard
+        agent: storyboard_agent
+        action: Build a visual storyboard
+        produces:
+          - storyboard.md
+      - id: edit_plan
+        module: post
+        agent: editor_agent
+        action: Build a draft editing execution plan
+        produces:
+          - edit_plan.md
+        review_stage: content_pack
+      - id: publish
+        module: publishing
+        agent: publisher_agent
+        action: Create the publish package
+        produces:
+          - publish_pack.md
+
+  finance:
+    workflow_name: crypto_finance_pipeline
+    template: crypto_finance
+    review_points:
+      - plan
+      - content_pack
+    steps:
+      - id: plan
+        module: planning
+        agent: director_agent
+        action: Create the execution plan and review checklist
+        produces:
+          - execution_plan.yaml
+          - review_plan.md
+        review_stage: plan
+      - id: editorial
+        module: editorial
+        agent: finance_editor_agent
+        action: Generate editorial framing for the episode
+        produces:
+          - script_outline.md
+      - id: research
+        module: research
+        agent: researcher_agent
+        action: Produce a structured research brief with verification needs
+        produces:
+          - research_brief.md
+      - id: scripting
+        module: scripting
+        agent: scriptwriter_agent
+        action: Turn the brief into a spoken-video outline
+        produces:
+          - script_outline.md
+      - id: avatar
+        module: delivery
+        agent: avatar_host_agent
+        action: Adapt the script for a digital presenter
+        produces:
+          - avatar_script.md
+      - id: edit_plan
+        module: post
+        agent: editor_agent
+        action: Build a draft editing execution plan
+        produces:
+          - edit_plan.md
+        review_stage: content_pack
+      - id: publish
+        module: publishing
+        agent: publisher_agent
+        action: Create the publish package
+        produces:
+          - publish_pack.md
+
+  rwa:
+    workflow_name: rwa_weekly_deep_research_pipeline
+    template: rwa_weekly_deep_research
+    review_points:
+      - research_report_review
+      - content_pack_review
+    steps:
+      - id: review_plan
+        module: planning
+        agent: rwa_research_director_agent
+        action: Define the weekly RWA research theme, scope, and review gates
+        produces:
+          - execution_plan.yaml
+          - review_plan.md
+      - id: news_digest
+        module: research
+        agent: rwa_news_researcher_agent
+        action: Gather and filter weekly RWA news
+        produces:
+          - news_digest.md
+      - id: macro_context
+        module: analysis
+        agent: cross_market_analyst_agent
+        action: Build the macro and cross-market context for RWA
+        produces:
+          - macro_context.md
+      - id: technical_report
+        module: analysis
+        agent: technical_analyst_agent
+        action: Build the weekly technical structure report
+        produces:
+          - technical_report.md
+      - id: research_report
+        module: strategy
+        agent: chief_strategist_agent
+        action: Synthesize research into a deep weekly report
+        produces:
+          - research_report.md
+        review_stage: research_report_review
+      - id: article_draft
+        module: content
+        agent: content_orchestrator_agent
+        action: Draft the article version of the weekly RWA report
+        produces:
+          - article_draft.md
+      - id: content_pack
+        module: content
+        agent: content_orchestrator_agent
+        action: Produce the video outline and material list
+        produces:
+          - script_outline.md
+          - material_list.md
+        review_stage: content_pack_review
+
+  mixed:
+    workflow_name: mixed_topic_pipeline
+    template: southeast_military
+    review_points:
+      - plan
+      - content_pack
+    steps:
+      - id: plan
+        module: planning
+        agent: director_agent
+        action: Create the execution plan and review checklist
+        produces:
+          - execution_plan.yaml
+          - review_plan.md
+        review_stage: plan
+      - id: editorial
+        module: editorial
+        agent: military_editor_agent
+        action: Generate mixed-topic editorial framing
+        produces:
+          - script_outline.md
+      - id: research
+        module: research
+        agent: researcher_agent
+        action: Produce a structured research brief with verification needs
+        produces:
+          - research_brief.md
+      - id: scripting
+        module: scripting
+        agent: scriptwriter_agent
+        action: Turn the brief into a spoken-video outline
+        produces:
+          - script_outline.md
+      - id: storyboard
+        module: storyboard
+        agent: storyboard_agent
+        action: Build a visual storyboard
+        produces:
+          - storyboard.md
+        review_stage: content_pack
+      - id: publish
+        module: publishing
+        agent: publisher_agent
+        action: Create the publish package
+        produces:
+          - publish_pack.md

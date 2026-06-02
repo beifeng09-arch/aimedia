@@ -1,0 +1,81 @@
+categories:
+  military:
+    keywords:
+      - 东南军情
+      - 南海
+      - 台海
+      - 军情
+      - 军事
+      - 舰队
+      - 导弹
+      - 海上局势
+      - 区域安全
+      - 战略观察
+  finance:
+    keywords:
+      - 比特币
+      - btc
+      - eth
+      - 以太坊
+      - 数字货币
+      - 加密
+      - 稳定币
+      - 交易所
+      - etf
+      - 周报
+      - 宏观流动性
+      - 链上
+  rwa:
+    keywords:
+      - rwa
+      - real world assets
+      - 现实世界资产
+      - 资产上链
+      - 本周rwa
+      - 本周 RWA
+      - tokenized treasuries
+      - tokenized funds
+      - 代币化国债
+      - 代币化基金
+      - 做本周 RWA 深度研究
+      - 生成本周 RWA 周报
+      - 开始本周 RWA 研究流程
+  mixed:
+    keywords:
+      - 地缘经济
+      - 军工产业
+      - 制裁与市场
+      - 能源与安全
+      - 混合专题
+      - 地缘与资产
+  system:
+    keywords:
+      - 系统
+      - 配置
+      - 接入
+      - 工作流
+      - workflow
+      - route
+      - agent
+      - OpenClaw
+      - 微信
+      - Codex
+      - 工具层
+
+workflow_map:
+  military: southeast_military_pipeline
+  finance: crypto_finance_pipeline
+  rwa: rwa_weekly_deep_research_pipeline
+  mixed: mixed_topic_pipeline
+  system: system_config_workflow
+
+fallback_priority:
+  - system
+  - mixed
+  - rwa
+  - military
+  - finance
+
+llm_classifier:
+  enabled: true
+  strategy: rules_then_prompt

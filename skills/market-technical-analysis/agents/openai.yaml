@@ -1,0 +1,5 @@
+interface:
+  display_name: "Market Technical Analysis"
+  short_description: "Write weekly technical reports for RWA market context"
+  brand_color: "#7C3AED"
+  default_prompt: "Use $market-technical-analysis to produce technical_report.md from these BTC, gold, NQ, and RWA chart notes."

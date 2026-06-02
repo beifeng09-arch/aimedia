@@ -1,0 +1,35 @@
+name: operator_agent
+role: 执行官智能体
+goal: 跟踪每一步输入输出、状态、日志与回退。
+system_prompt_file: prompts/operator.md
+input_schema:
+  required:
+    - step_id
+    - module_name
+  optional:
+    - input
+    - output
+    - status
+    - next_step
+output_schema:
+  required:
+    - step_id
+    - module_name
+    - input
+    - action
+    - output
+    - status
+    - next_step
+allowed_tools:
+  - web_search
+  - ffmpeg_edit
+  - publish_output
+handoff_rules:
+  - Persist every step before calling the next module
+  - Return to the previous responsible stage on revise
+retry_policy:
+  max_retries: 3
+  backoff_seconds: 1
+quality_checks:
+  - 日志字段完整
+  - 所有失败都要带 TODO 或错误信息

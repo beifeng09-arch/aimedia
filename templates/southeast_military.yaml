@@ -1,0 +1,29 @@
+name: southeast_military
+category: military
+duration_minutes:
+  min: 3
+  max: 8
+structure:
+  - 开场冲突
+  - 背景介绍
+  - 关键变化
+  - 军事/战略分析
+  - 未来观察点
+style_keywords:
+  - 专业
+  - 克制
+  - 清晰
+  - 有张力
+visual_materials:
+  - 海域地图
+  - 时间线卡片
+  - 公开演训素材
+  - 区域关系图示
+required_outputs:
+  - review_plan.md
+  - research_brief.md
+  - script_outline.md
+  - storyboard.md
+  - edit_plan.md
+  - publish_pack.md
+requires_avatar_script: false

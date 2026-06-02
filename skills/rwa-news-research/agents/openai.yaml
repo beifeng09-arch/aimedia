@@ -1,0 +1,5 @@
+interface:
+  display_name: "RWA News Research"
+  short_description: "Build weekly RWA news digests from source material"
+  brand_color: "#0F766E"
+  default_prompt: "Use $rwa-news-research to turn this week's RWA source material into a clean news_digest.md."

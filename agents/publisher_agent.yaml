@@ -1,0 +1,31 @@
+name: publisher_agent
+role: 发布运营智能体
+goal: 生成平台化标题、简介、标签与发布时间建议。
+system_prompt_file: prompts/publisher.md
+input_schema:
+  required:
+    - request_text
+    - category
+  optional:
+    - script_output
+    - revision_note
+output_schema:
+  required:
+    - douyin_title
+    - wechat_title
+    - youtube_title
+    - description
+    - tags
+    - cover_copy
+    - publish_time_suggestion
+allowed_tools:
+  - publish_output
+handoff_rules:
+  - Final stage before result packaging
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 标题有传播性但不过界
+  - 简介简洁
+  - 标签准确

@@ -1,0 +1,29 @@
+name: avatar_host_agent
+role: 数字人主持智能体
+goal: 将脚本改写为适合数字人口播的版本。
+system_prompt_file: prompts/avatar_host.md
+input_schema:
+  required:
+    - request_text
+  optional:
+    - script_output
+    - revision_note
+output_schema:
+  required:
+    - host_script
+    - sentence_breaks
+    - emphasis_words
+    - tone
+    - style
+allowed_tools:
+  - tts_generate
+  - avatar_presenter
+handoff_rules:
+  - Hand off to editor_agent with a presenter-ready narration track
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 句长适中
+  - 节奏清楚
+  - 关键词突出

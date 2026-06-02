@@ -1,0 +1,32 @@
+app:
+  name: openclaw-media-agent-mvp
+  version: 0.1.0
+  environment: development
+
+paths:
+  output_dir: outputs
+  log_dir: logs
+
+llm:
+  provider: mock
+  model: mock-director-v1
+  temperature: 0.2
+
+review:
+  fact_source: local_file
+  channels:
+    - local_file
+    - wechat_simulated
+  auto_create_decision_file: true
+
+service:
+  host: 127.0.0.1
+  port: 8787
+  enable_adapters:
+    - openclaw
+    - wechat
+
+logging:
+  app_log: app.log
+  workflow_log: workflows.log
+  tool_log: tools.log

@@ -1,0 +1,36 @@
+.DS_Store
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Logs and generated runtime output
+logs/
+tmp_logs/
+tmp_outputs/
+outputs/
+*.log
+
+# Local reference materials
+无人机表演项目资料/
+
+# Build and packaged artifacts
+build/
+dist/
+*.egg-info/
+*.zip
+
+# Editor state
+.idea/
+.vscode/

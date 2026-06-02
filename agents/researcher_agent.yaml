@@ -1,0 +1,30 @@
+name: researcher_agent
+role: 研究员智能体
+goal: 生成 research brief，区分已知、待核验和不可确认信息。
+system_prompt_file: prompts/researcher.md
+input_schema:
+  required:
+    - request_text
+    - category
+  optional:
+    - editorial_output
+    - revision_note
+output_schema:
+  required:
+    - research_topic
+    - background_summary
+    - key_facts
+    - controversies
+    - verification_questions
+    - writer_angles
+allowed_tools:
+  - web_search
+handoff_rules:
+  - Hand off to scriptwriter_agent after evidence chain is structured
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 关键事实点必须带状态
+  - 争议点不能省略
+  - 必须列出待核验问题

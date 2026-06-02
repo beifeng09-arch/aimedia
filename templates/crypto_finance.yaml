@@ -1,0 +1,32 @@
+name: crypto_finance
+category: finance
+formats:
+  - 快评
+  - 深度
+  - 周报
+structure:
+  - 当日/当周焦点
+  - 数据与事实
+  - 逻辑分析
+  - 市场影响
+  - 风险提示
+style_keywords:
+  - 专业
+  - 清晰
+  - 可信
+  - 风险优先
+focus_areas:
+  - BTC
+  - ETH
+  - 稳定币
+  - ETF
+  - 宏观流动性
+  - 链上数据
+required_outputs:
+  - review_plan.md
+  - research_brief.md
+  - script_outline.md
+  - avatar_script.md
+  - edit_plan.md
+  - publish_pack.md
+requires_avatar_script: true

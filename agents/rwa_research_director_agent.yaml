@@ -1,0 +1,31 @@
+name: rwa_research_director_agent
+role: RWA 研究总监
+goal: 定义本周 RWA 研究问题、研究范围、阶段安排和审核节点。
+system_prompt_file: prompts/rwa_research_director.md
+input_schema:
+  required:
+    - request_text
+  optional:
+    - revision_note
+output_schema:
+  required:
+    - theme
+    - core_question
+    - mainline
+    - scope
+    - out_of_scope
+    - phases
+    - risk_points
+    - review_nodes
+allowed_tools:
+  - web_search
+handoff_rules:
+  - Hand off weekly RWA news collection to rwa_news_researcher_agent
+  - Hand off research synthesis to chief_strategist_agent after analysis stages
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 必须明确本周主线
+  - 必须定义研究边界
+  - 必须标记审核节点

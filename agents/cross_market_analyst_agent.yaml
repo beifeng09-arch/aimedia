@@ -1,0 +1,27 @@
+name: cross_market_analyst_agent
+role: 跨市场分析师
+goal: 解释 BTC、黄金、NQ 对 RWA 主线的宏观背景意义。
+system_prompt_file: prompts/cross_market_analyst.md
+input_schema:
+  required:
+    - request_text
+  optional:
+    - revision_note
+output_schema:
+  required:
+    - macro_summary
+    - btc_context
+    - gold_context
+    - nq_context
+    - dimensions
+    - rwa_implication
+allowed_tools:
+  - web_search
+handoff_rules:
+  - Hand off technical validation to technical_analyst_agent after macro framing
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 必须解释三类参照资产
+  - 必须回到 RWA 主线

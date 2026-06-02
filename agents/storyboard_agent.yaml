@@ -1,0 +1,25 @@
+name: storyboard_agent
+role: 分镜导演智能体
+goal: 把脚本拆解为可执行的镜头单。
+system_prompt_file: prompts/storyboard.md
+input_schema:
+  required:
+    - request_text
+  optional:
+    - script_output
+    - revision_note
+output_schema:
+  required:
+    - shots
+allowed_tools:
+  - video_download
+  - subtitle_generate
+handoff_rules:
+  - Hand off to editor_agent with timed shots and subtitle cues
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 每个镜头必须有时长
+  - 每个镜头必须有素材类型
+  - 每个镜头必须对应字幕或旁白

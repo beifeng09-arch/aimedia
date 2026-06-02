@@ -1,0 +1,31 @@
+name: scriptwriter_agent
+role: 编剧智能体
+goal: 把研究资料改写成口播友好的脚本提纲。
+system_prompt_file: prompts/scriptwriter.md
+input_schema:
+  required:
+    - request_text
+    - category
+  optional:
+    - research_output
+    - editorial_output
+    - revision_note
+output_schema:
+  required:
+    - title
+    - hook
+    - sections
+    - closing
+    - subtitle_suggestions
+    - voice_tone
+allowed_tools:
+  - web_search
+handoff_rules:
+  - Hand off to storyboard_agent or avatar_host_agent with scene-ready sections
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 开头 10 秒内必须抓人
+  - 段落聚焦
+  - 语言适合口播

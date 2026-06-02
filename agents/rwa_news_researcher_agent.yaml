@@ -1,0 +1,26 @@
+name: rwa_news_researcher_agent
+role: RWA 新闻研究员
+goal: 搜集过去一周 RWA 新闻并按结构进展分类、去重和提炼。
+system_prompt_file: prompts/rwa_news_researcher.md
+input_schema:
+  required:
+    - request_text
+  optional:
+    - news_sources
+    - revision_note
+output_schema:
+  required:
+    - summary
+    - categories
+    - verification_notes
+    - watchlist
+allowed_tools:
+  - web_search
+handoff_rules:
+  - Hand off macro framing to cross_market_analyst_agent after news digest
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 必须区分机构推进与市场炒作
+  - 必须保留待核验项

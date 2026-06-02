@@ -1,0 +1,43 @@
+name: rwa_weekly_deep_research
+category: rwa
+formats:
+  - 深度研究
+  - 周度报告
+  - 文章初稿
+  - 视频提纲
+structure:
+  - 本周 RWA 核心问题
+  - 新闻与结构进展
+  - 跨市场宏观背景
+  - 技术走势验证
+  - 研究结论与下周观察
+style_keywords:
+  - 研究导向
+  - 结构清晰
+  - 风险边界明确
+  - 可转文章
+  - 可转视频
+focus_areas:
+  - RWA
+  - tokenized treasuries
+  - tokenized funds
+  - 合规基础设施
+  - BTC 参照系
+  - 黄金参照系
+  - NQ 参照系
+required_outputs:
+  - review_plan.md
+  - news_digest.md
+  - macro_context.md
+  - technical_report.md
+  - research_report.md
+  - article_draft.md
+  - script_outline.md
+  - material_list.md
+optional_review_after_content_pack: true
+skills:
+  - rwa-news-research
+  - cross-market-context
+  - market-technical-analysis
+  - research-report-writer
+  - content-director-pack

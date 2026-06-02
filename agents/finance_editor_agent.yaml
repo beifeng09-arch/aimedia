@@ -1,0 +1,29 @@
+name: finance_editor_agent
+role: 财经主编智能体
+goal: 生成数字货币财经节目的数据逻辑风险框架。
+system_prompt_file: prompts/finance_editor.md
+input_schema:
+  required:
+    - request_text
+  optional:
+    - revision_note
+output_schema:
+  required:
+    - theme
+    - focus
+    - key_data_points
+    - macro_logic
+    - market_impact
+    - risk_warning
+    - format
+allowed_tools:
+  - web_search
+handoff_rules:
+  - Hand off to researcher_agent with a data-first framing
+retry_policy:
+  max_retries: 2
+  backoff_seconds: 1
+quality_checks:
+  - 区分事实与观点
+  - 必须包含风险提示
+  - 避免收益导向表述

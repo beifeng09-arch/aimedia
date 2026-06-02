@@ -1,0 +1,145 @@
+skills:
+  workflow-planning:
+    display_name: Workflow Planning
+    short_description: Project-wide planning and review gate setup
+    description: Generic capability for planning workflow jobs and review checkpoints.
+    virtual: true
+    workflow_categories:
+      - military
+      - finance
+      - mixed
+      - rwa
+    stages:
+      - plan
+      - review_plan
+    reads:
+      - request.yaml
+      - execution_plan.yaml
+    writes:
+      - review_plan.md
+
+  content-pack:
+    display_name: Content Pack Assembly
+    short_description: Generic content production bundle assembly
+    description: Generic capability for turning research and scripting outputs into a reusable content pack.
+    virtual: true
+    workflow_categories:
+      - military
+      - finance
+      - mixed
+    stages:
+      - content_pack
+    reads:
+      - review_plan.md
+    writes:
+      - research_brief.md
+      - script_outline.md
+      - storyboard.md
+      - avatar_script.md
+      - edit_plan.md
+
+  publication-pack:
+    display_name: Publication Pack
+    short_description: Generic publish package assembly for final outputs
+    description: Generic capability for preparing final publish packages and platform-ready copy.
+    virtual: true
+    workflow_categories:
+      - military
+      - finance
+      - mixed
+    stages:
+      - publish
+    reads:
+      - publish_pack.md
+    writes:
+      - publish_pack.md
+
+  rwa-news-research:
+    path: skills/rwa-news-research
+    display_name: RWA News Research
+    short_description: Weekly RWA news digestion from source material
+    description: Extract, classify, and deduplicate weekly RWA news into news_digest.md.
+    workflow_categories:
+      - rwa
+    stages:
+      - news_digest
+    reads:
+      - review_plan.md
+      - search_results
+      - article_links
+      - article_text
+    writes:
+      - news_digest.md
+
+  cross-market-context:
+    path: skills/cross-market-context
+    display_name: Cross-Market Context
+    short_description: Macro backdrop for BTC, gold, and NQ around RWA
+    description: Translate cross-market signals into macro context for the RWA weekly workflow.
+    workflow_categories:
+      - rwa
+    stages:
+      - macro_context
+    reads:
+      - review_plan.md
+      - news_digest.md
+      - macro_notes
+    writes:
+      - macro_context.md
+
+  market-technical-analysis:
+    path: skills/market-technical-analysis
+    display_name: Market Technical Analysis
+    short_description: Technical structure reporting for RWA context
+    description: Turn BTC, gold, NQ, and related market notes into technical_report.md.
+    workflow_categories:
+      - rwa
+    stages:
+      - technical_report
+    reads:
+      - review_plan.md
+      - macro_context.md
+      - chart_notes
+      - level_notes
+    writes:
+      - technical_report.md
+
+  research-report-writer:
+    path: skills/research-report-writer
+    display_name: Research Report Writer
+    short_description: Synthesize RWA inputs into a weekly report
+    description: Combine upstream RWA outputs into research_report.md.
+    workflow_categories:
+      - rwa
+    stages:
+      - research_report
+    reads:
+      - review_plan.md
+      - news_digest.md
+      - macro_context.md
+      - technical_report.md
+    writes:
+      - research_report.md
+    review_gate: research_report_review
+
+  content-director-pack:
+    path: skills/content-director-pack
+    display_name: Content Director Pack
+    short_description: Convert RWA research into content production assets
+    description: Adapt research_report.md into article, script, material, and edit planning assets.
+    workflow_categories:
+      - rwa
+    stages:
+      - article_draft
+      - content_pack
+    reads:
+      - research_report.md
+      - news_digest.md
+      - macro_context.md
+      - technical_report.md
+    writes:
+      - article_draft.md
+      - script_outline.md
+      - material_list.md
+      - edit_plan.md
+    review_gate: content_pack_review

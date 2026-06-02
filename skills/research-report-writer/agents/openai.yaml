@@ -1,0 +1,5 @@
+interface:
+  display_name: "Research Report Writer"
+  short_description: "Synthesize RWA inputs into a complete weekly report"
+  brand_color: "#B45309"
+  default_prompt: "Use $research-report-writer to combine the upstream markdown inputs into research_report.md."
