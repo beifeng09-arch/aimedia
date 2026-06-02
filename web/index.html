@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI 短剧关键帧分镜台</title>
+    <title>AI 短剧脚本生成网站</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -12,93 +12,101 @@
         <div class="brand">
           <span class="brand-mark" aria-hidden="true"></span>
           <div>
-            <p class="eyebrow">Storyboard Console</p>
-            <h1>AI 短剧关键帧分镜台</h1>
+            <p class="eyebrow">Script Generator</p>
+            <h1>AI 短剧脚本生成网站</h1>
           </div>
         </div>
-        <div class="status-strip" aria-label="项目状态">
-          <span><strong id="shotCount">0</strong> 镜头</span>
-          <span><strong id="frameCount">0</strong> 关键帧</span>
-          <span><strong id="riskCount">0</strong> 待校准</span>
+        <div class="status-strip" aria-label="生成状态">
+          <span><strong id="sceneCount">0</strong> 场景</span>
+          <span><strong id="wordCount">0</strong> 字数</span>
+          <span><strong id="lengthCount">0</strong> 秒</span>
         </div>
       </header>
 
       <main class="workspace">
-        <section class="panel script-panel" aria-label="剧本输入">
+        <section class="panel script-panel" aria-label="脚本输入">
           <div class="panel-header">
             <div>
-              <p class="eyebrow">Script</p>
-              <h2>剧本</h2>
+              <p class="eyebrow">Input</p>
+              <h2>生成条件</h2>
             </div>
             <button class="ghost-button" id="loadSample" type="button">载入样例</button>
           </div>
 
-          <label class="field-label" for="storyInput">正文</label>
+          <label class="field-label" for="storyInput">核心创意（必填）</label>
           <textarea id="storyInput" spellcheck="false"></textarea>
 
           <div class="control-grid">
             <label>
-              <span>风格</span>
-              <select id="styleSelect">
-                <option value="都市悬疑，冷白光，压迫感，电影感">都市悬疑</option>
-                <option value="古风权谋，烛火，低饱和金色，细腻服化">古风权谋</option>
-                <option value="现实情感，手持摄影，自然光，生活质感">现实情感</option>
-                <option value="赛博都市，霓虹反射，高对比，雨夜">赛博都市</option>
+              <span>题材</span>
+              <select id="genreSelect">
+                <option>都市悬疑</option>
+                <option>现实情感</option>
+                <option>古风权谋</option>
+                <option>科幻冒险</option>
               </select>
             </label>
             <label>
-              <span>比例</span>
-              <select id="ratioSelect">
-                <option value="9:16 vertical short drama frame">9:16</option>
-                <option value="16:9 cinematic frame">16:9</option>
-                <option value="1:1 social teaser frame">1:1</option>
+              <span>目标时长</span>
+              <select id="durationSelect">
+                <option>60 秒</option>
+                <option>90 秒</option>
+                <option>120 秒</option>
+                <option>180 秒</option>
+              </select>
+            </label>
+            <label>
+              <span>角色数量</span>
+              <select id="castSelect">
+                <option>2 人</option>
+                <option>3 人</option>
+                <option>4 人</option>
+                <option>5+ 人</option>
+              </select>
+            </label>
+            <label>
+              <span>风格关键词</span>
+              <select id="styleSelect">
+                <option>冷白光，紧凑节奏，张力递进</option>
+                <option>温润明亮，生活质感，小人物情绪</option>
+                <option>华丽古装，慢镜语言，氛围感</option>
+                <option>霓虹反射，偏电影，动作感</option>
               </select>
             </label>
           </div>
 
-          <button class="primary-button" id="generateBtn" type="button">生成分镜</button>
+          <button class="primary-button" id="generateBtn" type="button">生成短剧脚本</button>
         </section>
 
-        <section class="board-area" aria-label="分镜工作区">
+        <section class="board-area" aria-label="脚本场景区">
           <div class="board-toolbar">
             <div>
-              <p class="eyebrow">Shot Board</p>
-              <h2>镜头与关键帧</h2>
+              <p class="eyebrow">Scene Board</p>
+              <h2>脚本场景</h2>
             </div>
-            <div class="segmented" role="tablist" aria-label="视图切换">
-              <button class="active" type="button" data-view="cards">卡片</button>
-              <button type="button" data-view="timeline">时间线</button>
-            </div>
+            <div class="mini-badge" id="sceneBadge">正在准备</div>
           </div>
-
           <div class="shot-grid" id="shotGrid"></div>
-          <div class="timeline hidden" id="timeline"></div>
         </section>
 
-        <aside class="panel inspector-panel" aria-label="镜头检查器">
+        <aside class="panel inspector-panel" aria-label="脚本输出面板">
           <div class="panel-header">
             <div>
-              <p class="eyebrow">Prompt Lab</p>
-              <h2>当前镜头</h2>
+              <p class="eyebrow">Output</p>
+              <h2>生成结果</h2>
             </div>
             <span class="shot-pill" id="activeShotId">--</span>
           </div>
 
-          <div class="preview-frame" id="activePreview" aria-hidden="true">
-            <div class="preview-subject"></div>
+          <label class="field-label" for="scriptOutput">完整台本</label>
+          <textarea id="scriptOutput" spellcheck="false"></textarea>
+
+          <div class="control-row" role="group" aria-label="输出操作">
+            <button class="secondary-button" id="copyScript" type="button">复制台本</button>
+            <button class="secondary-button" id="downloadScript" type="button">下载 .txt</button>
           </div>
 
-          <label class="field-label" for="promptOutput">关键帧 Prompt</label>
-          <textarea id="promptOutput" spellcheck="false"></textarea>
-
-          <div class="review-tags" aria-label="返修标签">
-            <button type="button" data-tag="角色脸不一致">角色脸</button>
-            <button type="button" data-tag="服装不一致">服装</button>
-            <button type="button" data-tag="镜头太平">镜头</button>
-            <button type="button" data-tag="情绪不够">情绪</button>
-          </div>
-
-          <label class="field-label" for="exportOutput">导出 JSON</label>
+          <label class="field-label" for="exportOutput">脚本 JSON</label>
           <textarea id="exportOutput" spellcheck="false" readonly></textarea>
           <button class="secondary-button" id="copyJson" type="button">复制 JSON</button>
         </aside>
